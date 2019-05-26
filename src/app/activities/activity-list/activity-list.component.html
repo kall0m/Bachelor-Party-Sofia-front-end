@@ -1,18 +1,44 @@
-<section class="height-70 bg--dark imagebg page-title page-title--animate parallax" data-overlay="5">
-  <div class="background-image-holder background--bottom">
-      <img alt="image" src="assets/img/hero4.jpg">
-  </div>
-  <div class="container pos-vertical-center">
-      <div class="row">
-          <div class="col-sm-10 col-sm-offset-1 text-center">
-              <h3>Discover our Sofia by day activities for your Bachelor Party.</h3>
-              <p class="lead">
-                Choose between more than  exclusive activities and we will arrange your custom program for the weekend.
-              </p>
-          </div>
+<div class="container">
+
+  <div class="wrapper text-center">
+    <div class="row">
+      <div class="col-md-4 offset-md-4">
+        <h2>{{ activities ? 'Available activities' : 'Loading activities...' }}</h2>
+
+        <blockquote class="blockquote">
+          <p class="mb-0">
+            Discover our Sofia by day activities for your Bachelor Party.
+            <br/>
+            Choose between more than 40 exclusive activities and we will arrange your custom program for the weekend.
+          </p>
+        </blockquote>
       </div>
+    </div>
+
+    <div class="row">
+      <div class="input-group col-sm-12 col-md-4 offset-md-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="now-ui-icons ui-1_zoom-bold"></i></div>
+        </div>
+        <input
+          #searchTitle
+          type="text"
+          aria-label="Activity title"
+          class="form-control form-control-lg"
+          placeholder="e.g. Karting"
+          (input)="filterActivitiesByTitle(searchTitle.value)"
+          />
+      </div>
+
+      <div class="form-group col-md-2">
+        <select class="form-control form-control-lg" id="timeTypeSelect" (change)="filterActivitiesByTimeType($event.target.value)">
+          <option value="all" selected>Anytime</option>
+          <option *ngFor="let timeType of ['day', 'night']" [value]="timeType">By {{ timeType }}</option>
+        </select>
+      </div>
+    </div>
   </div>
-</section>
+</div>
 
 <section>
   <div class="container">
@@ -34,55 +60,6 @@
     </div>
 </section>
 
-<section class="masonry-contained">
-  <div class="container">
-      <div class="row">
-          <div class="masonry masonry-shop">
-              <div class="masonry__filters text-center" data-filter-all-text="Show All"></div>
-              <div class="masonry__container masonry--animate masonry--active">
-                  <div *ngFor="let activity of filteredActivities" class="col-md-4 col-sm-6 masonry__item" attr.data-masonry-filter="{{activity.time_type}}">
-                      <a routerLink="/activities/{{ activity.id }}">
-                          <div class="card card-7">
-                              <div class="card__image">
-                                  <img alt="Pic" src="{{ activity.image_url }}">
-                              </div>
-                              <div class="card__body boxed bg--white">
-                                  <div class="card__title">
-                                      <h6>By {{ activity.time_type }}</h6>
-                                      <h4>{{ activity.title }}</h4>
-                                      <h5>{{ activity.subtitle }}</h5>
-                                  </div>
-
-                                  <div class="card__price">
-                                      <span *ngIf="activity.getLowestPriceAmount() === -1; else hasPrice">Coming soon</span>
-                                      <ng-template #hasPrice>
-                                        <span *ngIf="activity.prices.length > 1">
-                                          from
-                                        </span>
-                        
-                                        <span>{{ activity.getLowestPriceAmount() | currency }}</span>
-                                      </ng-template>
-                                  </div>
-
-                                  <div *ifInRole="'admin'">
-                                    <a class="btn btn--sm btn--primary" (click)="editActivity(activity)">
-                                      <span class="btn__text">
-                                          Modify
-                                      </span>
-                                    </a>
-                                    <button class="btn btn-primary btn-circle" (click)="editActivity(activity)">
-                                      <i class="now-ui-icons ui-1_settings-gear-63"></i> Modify
-                                    </button>
-                                    <button class="btn btn-danger btn-circle btn-icon" (click)="deleteActivity(activity)">
-                                      <i class="now-ui-icons ui-1_simple-remove"></i>
-                                    </button>
-                                  </div>
-                              </div>
-                          </div>
-                      </a>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</section>
+<div *ifInRole="'admin'">
+  <a routerLink="/activities/new" class="btn btn-info">Create activity</a>
+</div>

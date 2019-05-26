@@ -1,12 +1,6 @@
-<div *ngIf="parties.length; else noParties">
-  <h3 *ifInRole="'admin'">All parties:</h3>
-  <h3 *ifInRole="'guide'">Assigned parties:</h3>
-  <h3 *ifInRole="'customer'">Your own parties:</h3>
-</div>
-
-<ng-template #noParties>
-  <h3>You are not related with any parties yet... :(</h3>
-</ng-template>
+<h3 *ifInRole="'admin'">All parties:</h3>
+<h3 *ifInRole="'guide'">Assigned parties:</h3>
+<h3 *ifInRole="'customer'">Your own parties:</h3>
 
 <div class="row mt-5">
   <div class="col-md-6 col-sm-3">
@@ -56,9 +50,7 @@
 
           <div *ifInRole="'admin'">
             <div *ngIf="!party.guide; else displayWithdrawGuideButton">
-              <button class="btn btn-info" (click)="setDisplayGuideAssignmentForm(party.id)">
-                {{guideAssignmentFormButtons.get(party.id).getName()}}
-              </button>
+              <button class="btn btn-info" (click)="setDisplayGuideAssignmentForm(party.id)">{{guideAssignmentFormButtons.get(party.id).getName()}}</button>
 
               <ng-container *ngIf="guideAssignmentFormButtons.get(party.id).getValue()">
                 <form [formGroup]="guideAssignmentForm" class="form">
