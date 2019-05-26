@@ -10,20 +10,18 @@
       <div class="nav-module menu-module left">
           <ul class="menu">
               <li>
-                  <a routerLink="/activities">Activities</a>
+                <a routerLink="/activities">Activities</a>
               </li>
 
-              <li *ngIf="(authService.userSignedIn$ | async)">
-                <ul>
-                  <li *ifInRole="'admin'">
-                    <a routerLink="/admin">Admin panel</a>
-                  </li>
+              <ng-container *ngIf="(authService.userSignedIn$ | async)">
+                <li *ifInRole="'admin'">
+                  <a routerLink="/admin">Admin panel</a>
+                </li>
 
-                  <li>
-                    <a routerLink="/parties">Parties</a>
-                  </li>
-                </ul>
-              </li>
+                <li>
+                  <a routerLink="/parties">Parties</a>
+                </li>
+              </ng-container>
           </ul>
       </div>
 
@@ -35,9 +33,12 @@
       </div>
 
       <div class="nav-module right">
-        <ng-template *ngIf="(authService.userSignedIn$ | async); else anonymousUserNav">
-          <a routerLink="/" (click)="logOut()" class="nav-function">Logout</a>
-        </ng-template>
+        <ng-container *ngIf="(authService.userSignedIn$ | async); else anonymousUserNav">
+          <a routerLink="/" (click)="logOut()" class="nav-function">
+            <i class="icon icon-Scissor"></i>
+            <span>Logout</span>
+          </a>
+        </ng-container>
   
         <ng-template #anonymousUserNav>
           <a routerLink="/login" class="nav-function">
