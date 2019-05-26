@@ -1,57 +1,88 @@
-<form (ngSubmit)="onSignUpSubmit()" #f="ngForm">
-  <div class="row">
-    <div class="col-sm-4 offset-sm-4">
-      <div class="form-group row" *ngIf="!getInvitationToken()">
-        <label for="email" class="col-sm-2 col-form-label">Email</label>
-
-        <div class="col-sm-10">
-          <input id="email"
-                 type="email"
-                 required
-                 name='email'
-                 [(ngModel)]="signUpUser.login"
-                 class="validate form-control">
+<section class="height-100 cover cover-8">
+    <div class="col-md-7 col-sm-5">
+        <div class="background-image-holder">
+            <img alt="image" src="assets/img/hero15.jpg">
         </div>
-      </div>
-  
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="password">Password</label>
-          <input id="password"
-                  type="password"
-                  required
-                  name='password'
-                  [(ngModel)]="signUpUser.password"
-                  class="validate form-control">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="password_confirmation">Password confirmation</label>
-            
-          <input id="password_confirmation"
-                  type="password"
-                  required
-                  name='password_confirmation'
-                  [(ngModel)]="signUpUser.passwordConfirmation"
-                  class="validate form-control">
-
-          <span *ngIf="signUpUser.password != signUpUser.passwordConfirmation"
-                style="color:red">
-            Passwords must match
-          </span>
-        </div>
-      </div>
-
-      <div class="col-sm-12">
-        <button type="submit"
-                [disabled]="!(f.valid) || !(signUpUser.password == signUpUser.passwordConfirmation)"
-                class="btn btn-primary">
-          Sign up
-        </button>
-      </div>
-  
-      <span>
-        Already have an account? <a routerLink="/login">Click here to login.</a>
-      </span>
     </div>
-  </div>
-</form>
+    <div class="col-md-5 col-sm-7 bg--white text-center">
+        <div class="pos-vertical-center">
+            <img class="logo" alt="Pillar" src="assets/img/logo.png">
+            <p class="lead">
+                Stag Do Weekends in Bulgaria
+            </p>
+            <div class="text-left">
+                <form (ngSubmit)="onSignUpSubmit()" #f="ngForm">
+                    <div class="row" *ngIf="!getInvitationToken()">
+                        <div class="col-sm-12">
+                            <div class="input-with-icon">
+                                <label>Email Address:</label>
+                                <i class="icon icon-Mail-2"></i>
+                                <input id="email"
+                                       type="email"
+                                       required
+                                       name='email'
+                                       [(ngModel)]="signUpUser.login"
+                                       class="validate form-control"
+                                       placeholder="you@yourwebsite.com"
+                                       required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-with-icon">
+                                <label for="password">Create Password</label>
+                                <i class="icon icon-Security-Check"></i>
+                                <input id="password"
+                                       type="password"
+                                       required
+                                       name='password'
+                                       [(ngModel)]="signUpUser.password"
+                                       class="validate form-control"
+                                       placeholder="••••••••"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="input-with-icon">
+                                <label for="password_confirmation">Password confirmation</label>
+                                <i class="icon icon-Security-Check"></i>
+                                <input id="password_confirmation"
+                                       type="password"
+                                       required
+                                       name='password_confirmation'
+                                       [(ngModel)]="signUpUser.passwordConfirmation"
+                                       class="validate form-control"
+                                       placeholder="••••••••"
+                                       required>
+                            </div>
+
+                            <div class="alert alert-danger" *ngIf="signUpUser.password != signUpUser.passwordConfirmation">  
+                              Passwords must match.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button type="submit"
+                            [disabled]="!(f.valid) || !(signUpUser.password == signUpUser.passwordConfirmation)"
+                            class="btn btn--primary vpe">
+                              Get Started
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row text-center">
+                      <p class="type--fine-print">
+                        Already have an account?
+                        <a routerLink="/login">Click here to login.</a>
+                      </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
