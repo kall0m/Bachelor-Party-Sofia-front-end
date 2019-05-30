@@ -1,15 +1,19 @@
 <div *ngIf="activityIsInCart(); else addActivityBlock">
-  <button type="button" (click)="modifyCart()" class="btn btn-danger btn-round">
-    <i class="now-ui-icons ui-1_simple-delete"></i>
-    Remove from cart &middot; {{ selectedPrice.amount | currency }}
-    <span *ngIf="selectedPrice.options"> ({{ selectedPrice.options }})</span>
-  </button>
+  <a class="btn btn--lg btn-danger mb--1" (click)="modifyCart()">
+    <span class="btn__text">
+      <i class="icon icon-Remove-Cart"></i>
+      Remove from cart &middot; {{ selectedPrice.amount | currency }}
+      <ng-container *ngIf="selectedPrice.options"> ({{ selectedPrice.options }})</ng-container>
+    </span>
+  </a>
 </div>
 
 <ng-template #addActivityBlock>
-  <button type="button" class="btn btn-success btn-round" (click)="modifyCart()">
-    <i class="now-ui-icons ui-1_simple-add"></i>
-    Add to cart &middot; {{ selectedPrice.amount | currency }}
-    <span *ngIf="selectedPrice.options"> ({{ selectedPrice.options }})</span>
-  </button>
+  <a class="btn btn--lg btn--primary mb--1" (click)="modifyCart()">
+    <span class="btn__text">
+      <i class="icon icon-Add-Cart"></i>
+      Add to cart &middot; {{ selectedPrice.amount | currency }}
+      <ng-container *ngIf="selectedPrice.options"> ({{ selectedPrice.options }})</ng-container>
+    </span>
+  </a>
 </ng-template>
