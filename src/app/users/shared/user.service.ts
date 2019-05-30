@@ -3,7 +3,7 @@ import { AppSettings } from 'src/app/app.settings';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from './user.model';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,11 @@ export class UserService {
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.usersUrl)
       .pipe(
+        map(response => {
+          return response.map((user: User) => {
+            return new User().deserialize(user)
+          })
+        }),
         // TODO: Error handling, using catchError() method from rxjs
         tap(_ => this.log('Fetched all users'))
       )
