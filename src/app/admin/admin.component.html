@@ -1,35 +1,60 @@
-<div class="container">
-  <div class="row">
-    <a routerLink="/activities">
-      <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title"><i class="now-ui-icons objects_spaceship"></i> Activities</h5>
+<section class="stats-1 bg--secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h2>Admin Panel</h2>
+                <h4>Welcome, master!</h4>
+            </div>
         </div>
-      </div>
-    </a>
-  
-    <a routerLink="/quotations">
-      <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title"><i class="now-ui-icons education_paper"></i> Quotations</h5>
-        </div>
-      </div>
-    </a>
-  
-    <a routerLink="/users">
-      <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title"><i class="now-ui-icons users_single-02"></i> Users</h5>
-        </div>
-      </div>
-    </a>
+        
+        <div class="row">
+            <a routerLink="/activities">
+              <div class="col-sm-4">
+                  <div class="feature feature-1 text-center boxed boxed--lg">
+                      <i class="icon icon--lg icon-Air-Balloon color--primary"></i>
+                      <h3>Activities</h3>
+                      <span>
+                          <em>{{ activitiesCount }}</em>
+                      </span>
+                  </div>
+              </div>
+            </a>
 
-    <a routerLink="/parties">
-      <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title"><i class="now-ui-icons clothes_tie-bow"></i> Parties</h5>
+            <a routerLink="/quotations">
+              <div class="col-sm-4">
+                  <div class="feature feature-1 text-center boxed boxed--lg">
+                      <i class="icon icon--lg icon-Box-Full color--primary"></i>
+                      <h3>Quotations</h3>
+                      <span>
+                          <em>{{ quotationsCount }}</em>
+                      </span>
+                  </div>
+              </div>
+            </a>
+
+            <a routerLink="/users">
+              <div class="col-sm-4">
+                  <div class="feature feature-1 text-center boxed boxed--lg">
+                      <i class="icon icon--lg icon-Business-Mens color--primary"></i>
+                      <h3>Users</h3>
+                      <span>
+                          <em>{{ usersCount }}</em>
+                      </span>
+                  </div>
+              </div>
+            </a>
+
+            <a routerLink="/parties">
+              <div class="col-sm-4">
+                  <div class="feature feature-1 text-center boxed boxed--lg">
+                      <i class="icon icon--lg icon-Hipster-Men3 color--primary"></i>
+                      <h3>Parties</h3>
+                      <span>
+                          <em>{{ partiesCount }}</em>
+                      </span>
+                  </div>
+              </div>          
+            </a>
         </div>
-      </div>
-    </a>
-  </div>
-</div>
+    </div>
+</section>
