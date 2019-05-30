@@ -41,48 +41,54 @@
               <div class="masonry__filters text-center" data-filter-all-text="Show All"></div>
               <div class="masonry__container masonry--animate masonry--active">
                   <div *ngFor="let activity of filteredActivities" class="col-md-4 col-sm-6 masonry__item" attr.data-masonry-filter="{{activity.time_type}}">
-                      <a routerLink="/activities/{{ activity.id }}">
-                          <div class="card card-7">
-                              <div class="card__image">
-                                  <img alt="Pic" src="{{ activity.image_url }}">
+                      <div class="card card-7">
+                          <div class="card__image">
+                              <a routerLink="/activities/{{ activity.id }}">
+                                <img alt="Pic" src="{{ activity.image_url }}">
+                              </a>
+                          </div>
+                          <div class="card__body boxed bg--white">
+                              <div class="card__title">
+                                  <h6>By {{ activity.time_type }}</h6>
+                                  <h4>{{ activity.title }}</h4>
+                                  <h5>{{ activity.subtitle }}</h5>
                               </div>
-                              <div class="card__body boxed bg--white">
-                                  <div class="card__title">
-                                      <h6>By {{ activity.time_type }}</h6>
-                                      <h4>{{ activity.title }}</h4>
-                                      <h5>{{ activity.subtitle }}</h5>
-                                  </div>
 
-                                  <div class="card__price">
-                                      <span *ngIf="activity.getLowestPriceAmount() === -1; else hasPrice">Coming soon</span>
-                                      <ng-template #hasPrice>
-                                        <span *ngIf="activity.prices.length > 1">
-                                          from
-                                        </span>
-                        
-                                        <span>{{ activity.getLowestPriceAmount() | currency }}</span>
-                                      </ng-template>
-                                  </div>
+                              <div class="card__price">
+                                  <span *ngIf="activity.getLowestPriceAmount() === -1; else hasPrice">Coming soon</span>
+                                  <ng-template #hasPrice>
+                                    <span *ngIf="activity.prices.length > 1">
+                                      from
+                                    </span>
+                    
+                                    <span>{{ activity.getLowestPriceAmount() | currency }}</span>
+                                  </ng-template>
+                              </div>
 
-                                  <div *ifInRole="'admin'">
-                                    <a class="btn btn--sm btn--primary" (click)="editActivity(activity)">
-                                      <span class="btn__text">
-                                          Modify
-                                      </span>
-                                    </a>
-                                    <button class="btn btn-primary btn-circle" (click)="editActivity(activity)">
-                                      <i class="now-ui-icons ui-1_settings-gear-63"></i> Modify
-                                    </button>
-                                    <button class="btn btn-danger btn-circle btn-icon" (click)="deleteActivity(activity)">
-                                      <i class="now-ui-icons ui-1_simple-remove"></i>
-                                    </button>
-                                  </div>
+                              <div *ifInRole="'admin'" class="mt-2">
+                                <a class="btn btn--sm btn-info" (click)="editActivity(activity)">
+                                  <span class="btn__text">
+                                      Modify
+                                  </span>
+                                </a>
+
+                                <a class="btn btn--sm btn-danger" (click)="deleteActivity(activity)">
+                                  <span class="btn__text">
+                                      Delete
+                                  </span>
+                                </a>
                               </div>
                           </div>
-                      </a>
+                      </div>
                   </div>
               </div>
           </div>
+
+          <a *ifInRole="'admin'" class="btn btn--lg btn--primary" routerLink="/activities/new">
+            <span class="btn__text">
+                Create Activity
+            </span>
+          </a>
       </div>
   </div>
 </section>
