@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../shared/user.model';
 import { UserService } from '../shared/user.service';
 import { AppSettings } from 'src/app/app.settings';
@@ -11,10 +11,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UserListComponent implements OnInit {
 
-  users: User[];
-  admins: User[];
-  guides: User[];
-  customers: User[];
+  @Input() users: User[];
+  @Input() admins: User[];
+  @Input() guides: User[];
+  @Input() customers: User[];
  
   constructor(
     private userService: UserService,
