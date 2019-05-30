@@ -1,82 +1,73 @@
-<div class="wrapper" *ngIf="party; else loading">
-  <div class="card">
-    <div class="card-header">
-      <ul class="nav nav-tabs justify-content-center" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" href="#info" role="tab">
-            <i class="now-ui-icons business_badge"></i>
-            Brief info
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#activities" role="tab">
-            <i class="now-ui-icons objects_spaceship"></i>
-            Activities
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#participants" role="tab">
-            <i class="now-ui-icons users_circle-08"></i>
-            Participants
-          </a>
-        </li>
-      </ul>
+<section class="height-70 bg--dark imagebg page-title page-title--animate parallax" data-overlay="4">
+    <div class="background-image-holder">
+        <img alt="image" src="assets/img/hero15.jpg">
     </div>
-  
-    <div class="card-body">
-      <div class="tab-content text-center">
-        <div class="tab-pane active" id="info" role="tabpanel">
-          <h4>{{ party.title }} ({{ party.date }})</h4>
-
-          <ul>
-            <li>Host: {{ party.host.email }}</li>
-            <li>
-              Guide:
-              <span *ngIf="party.guide; else guideNotAssignedYet">
-                {{ party.guide.email }}
-              </span>
-              <ng-template #guideNotAssignedYet>
-                Not assigned yet
-              </ng-template>
-            </li>
-          </ul>
-        </div>
-        <div class="tab-pane" id="activities" role="tabpanel">
-          <h4>Activites for the party:</h4>
-
-          <ul *ngFor="let activity of party.activities">
-            <li>{{ activity.title }}</li>
-          </ul>
-        </div>
-        <div class="tab-pane" id="participants" role="tabpanel">
-          <div *ngIf="party.getParticipants(); else noParticipants">
-            <h4>Participants:</h4>
-  
-            <ul *ngFor="let participantObj of party.getParticipants()">
-              <li>{{ participantObj.email }} ({{ participantObj.acceptanceStatus }})</li>
-            </ul>
-          </div>
-          
-          <ng-template #noParticipants>
-            <h4>No participants yet.</h4>
-          </ng-template>
-
-          <div *ngIf="currentUserIsPartyHost()">
-            <button type="button" (click)="toggleInviteForm()" class="btn btn-success btn-round">
-              <i class="now-ui-icons ui-1_simple-add"></i>
-              Invite participant
-            </button>
-            
-            <div *ngIf="inviteFormVisible" class="col-md-4 offset-md-4">
-              <app-invite-form [party]="party"></app-invite-form>
+    <div class="container pos-vertical-center">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1 text-center">
+                <h1 *ifInRole="'admin'">Party Details</h1>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
+</section>
 
-<ng-template #loading>
-  <h2 class="text-center">Loading party...</h2>
-</ng-template>
+<section *ngIf="party; else loading">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="feature boxed feature-1">
+                    <i class="icon icon-Ship"></i>
+                    <h5>{{ party.title }} ({{ party.date }})</h5>
+
+                    <p><b>Host:</b> {{ party.host.email }}</p>
+
+                    <p>
+                      <b>Guide:</b>
+                      <span *ngIf="party.guide; else guideNotAssignedYet">
+                        {{ party.guide.email }}
+                      </span>
+                      <ng-template #guideNotAssignedYet>
+                        Not assigned yet
+                      </ng-template>
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="feature boxed feature-1">
+                    <i class="icon icon-Fingerprint-2"></i>
+                    <h5>Activites for the party:</h5>
+                    <ul class="bullets" *ngFor="let activity of party.activities">
+                      <li><a routerLink="/activities/{{ activity.id }}">{{ activity.title }}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="feature boxed feature-1">
+                    <i class="icon icon-Shop-2"></i>
+                    <div *ngIf="party.getParticipants(); else noParticipants">
+                      <h4>Participants:</h4>
+            
+                      <ul *ngFor="let participantObj of party.getParticipants()">
+                        <li>{{ participantObj.email }} ({{ participantObj.acceptanceStatus }})</li>
+                      </ul>
+                    </div>
+                    
+                    <ng-template #noParticipants>
+                      <h4>No participants yet.</h4>
+                    </ng-template>
+
+                    <div *ngIf="currentUserIsPartyHost()">
+                      <button type="button" (click)="toggleInviteForm()" class="btn btn-info mt-2">
+                        <i class="icon-Add-User icon--lg"></i>
+                        Invite participant
+                      </button>
+                      
+                      <div *ngIf="inviteFormVisible" class="bg--white mt-2">
+                        <app-invite-form [party]="party"></app-invite-form>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
