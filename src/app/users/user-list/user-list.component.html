@@ -1,47 +1,68 @@
-<div class="container-fluid">
-  <a routerLink="/users/new" class="btn btn-info">Add User</a>
-  
-  <div class="row mt-5">
-    <div class="col-xs-6 col-md-4">
-      <h2>Admins:</h2>
-      <ng-container *ngFor="let admin of admins">
-        <div class="card">
-          <button class="btn btn-danger btn-circle btn-icon float-right" (click)="deleteUser(admin)">
-            <i class="now-ui-icons ui-1_simple-remove"></i>
-          </button>
-          <div class="card-body">
-            <p class="card-text">Admin email: {{ admin.email }}</p>
-          </div>
-        </div>
-      </ng-container>
-    </div>
+<section class="bg--secondary">
+  <div class="container">
+    <div class="row">
+      <div class="masonry">
+        <h4>Admins</h4>
+        <hr>
+        <div class="masonry__container masonry--active">
+          <ng-container *ngFor="let admin of admins">
+            <div class="col-xs-6 col-md-4 masonry__item">
+              <div class="boxed bg--white box-shadow">
+                  <button class="btn btn-danger btn-circle btn-icon float-right" (click)="deleteUser(admin)">
+                      <i class="icon icon-Remove-User color--primary"></i>
+                  </button>
+                  <div class="card-body">
+                    <p class="card-text">{{ admin.email }}</p>
+                  </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>  
+      </div>
 
-    <div class="col-xs-6 col-md-4">
-      <h2>Guides:</h2>
-      <ng-container *ngFor="let guide of guides">
-        <div class="card">
-          <button class="btn btn-danger btn-circle btn-icon float-right" (click)="deleteUser(guide)">
-            <i class="now-ui-icons ui-1_simple-remove"></i>
-          </button>
-          <div class="card-body">
-            <p class="card-text">Guide email: {{ guide.email }}</p>
-          </div>
-        </div>
-      </ng-container>
-    </div>
+      <div class="masonry">
+        <h4>Guides</h4>
+        <hr>
+        <div class="masonry__container masonry--active">
+          <ng-container *ngFor="let guide of guides">
+            <div class="col-xs-6 col-md-4 masonry__item">
+              <div class="boxed bg--white box-shadow">
+                  <button class="btn btn-danger btn-circle btn-icon float-right" (click)="deleteUser(guide)">
+                      <i class="icon icon-Remove-User color--primary"></i>
+                  </button>
+                  <div class="card-body">
+                    <p class="card-text">{{ guide.email }}</p>
+                  </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>  
+      </div>
 
-    <div class="col-xs-6 col-md-4">
-      <h2>Customers:</h2>
-      <ng-container *ngFor="let customer of customers">
-        <div class="card">
-          <button class="btn btn-danger btn-circle btn-icon float-right" (click)="deleteUser(customer)">
-            <i class="now-ui-icons ui-1_simple-remove"></i>
-          </button>
-          <div class="card-body">
-            <p class="card-text">Customer email: {{ customer.email }}</p>
-          </div>
-        </div>
-      </ng-container>
+      <div class="masonry">
+        <h4>Customers</h4>
+        <hr>
+        <div class="masonry__container masonry--active">
+          <ng-container *ngFor="let customer of customers">
+            <div class="col-xs-6 col-md-4 masonry__item">
+              <div class="boxed bg--white box-shadow">
+                  <button class="btn btn-danger btn-circle btn-icon float-right" (click)="deleteUser(customer)">
+                      <i class="icon icon-Remove-User color--primary"></i>
+                  </button>
+                  <div class="card-body">
+                    <p class="card-text">{{ customer.email }}</p>
+                  </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>  
+      </div>
+
+      <a class="btn btn--lg btn--primary" routerLink="/users/new">
+        <span class="btn__text">
+            Add User
+        </span>
+      </a>
     </div>
   </div>
-</div>
+</section>
