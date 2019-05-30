@@ -40,6 +40,7 @@ export class ActivityCreateEditComponent implements OnInit {
       duration: ['', [Validators.required, Validators.min(0)]],
       transfer_included: [false],
       guide_included: [false],
+      image_url: ['', Validators.required],
       prices_attributes: this.formBuilder.array([])
     });
 
