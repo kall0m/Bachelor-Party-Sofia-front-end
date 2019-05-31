@@ -2,6 +2,20 @@
 Add your custom styles below
 ****************************/
 
+/* Navbar */
+
+.nav-bar .logo {
+    max-height: 100%;
+}
+
+/* Footer */
+
+footer .logo {
+    max-height: 200px;
+}
+
+/* Common */
+
 .mb-2 {
     margin-bottom: 20px;
 }
@@ -42,6 +56,10 @@ Add your custom styles below
 
 .bg--white input[type='number'], select {
     background: #f8f8f8;
+}
+
+.cover-8 .logo {
+    max-height: 120px;
 }
 
 /* Navbar */

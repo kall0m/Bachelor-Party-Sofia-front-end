@@ -2,7 +2,7 @@
   <nav>
     <div class="nav-bar bg--dark" data-fixed-at="700">
       <div class="nav-module logo-module left">
-          <a routerLink="/">
+          <a href="/">
             <img alt="Bachelor Party Sofia" class="logo logo-dark" src="assets/img/logo.png">
             <img alt="Bachelor Party Sofia" class="logo logo-light" src="assets/img/logo.png">
           </a>
@@ -10,16 +10,16 @@
       <div class="nav-module menu-module left">
           <ul class="menu">
               <li>
-                <a routerLink="/activities">Activities</a>
+                <a href="/activities">Activities</a>
               </li>
 
               <ng-container *ngIf="(authService.userSignedIn$ | async)">
                 <li *ifInRole="'admin'">
-                  <a routerLink="/admin">Admin panel</a>
+                  <a href="/admin">Admin panel</a>
                 </li>
 
                 <li>
-                  <a routerLink="/parties">Parties</a>
+                  <a href="/parties">Parties</a>
                 </li>
               </ng-container>
           </ul>
@@ -34,14 +34,14 @@
 
       <div class="nav-module right">
         <ng-container *ngIf="(authService.userSignedIn$ | async); else anonymousUserNav">
-          <a routerLink="/" (click)="logOut()" class="nav-function">
+          <a href="/" (click)="logOut()" class="nav-function">
             <i class="icon icon-Scissor"></i>
             <span>Logout</span>
           </a>
         </ng-container>
   
         <ng-template #anonymousUserNav>
-          <a routerLink="/login" class="nav-function">
+          <a href="/login" class="nav-function">
             <i class="icon icon-Beard-3"></i>
             <span>Login</span>
           </a>
