@@ -1,13 +1,13 @@
 <section class="height-70 bg--dark imagebg page-title page-title--animate parallax" data-overlay="5">
   <div class="background-image-holder background--bottom">
-      <img alt="image" src="assets/img/hero4.jpg">
+      <img alt="image" src="assets/img/activities.jpg">
   </div>
   <div class="container pos-vertical-center">
       <div class="row">
           <div class="col-sm-10 col-sm-offset-1 text-center">
-              <h3>Discover our Sofia by day activities for your Bachelor Party.</h3>
+              <h3>Discover our Sofia by awesome activities for your Bachelor Party.</h3>
               <p class="lead">
-                Choose between more than  exclusive activities and we will arrange your custom program for the weekend.
+                Choose between many exclusive activities and we will arrange your custom program for the weekend.
               </p>
           </div>
       </div>
@@ -18,10 +18,7 @@
   <div class="container">
       <div class="row">
           <div class="col-sm-8 col-sm-offset-2 text-center">
-              <h3>Your Creative Collective</h3>
-              <p class="lead">
-                  Our diverse team comprises talent from a range of design disciplines working together to deliver effective solutions
-              </p>
+              <h3>Available activities:</h3>
               <div class="input-with-icon">
                 <i class="icon-Magnifi-Glass2"></i>
                 <input #searchTitle type="search" aria-label="Activity title"
@@ -30,8 +27,27 @@
                 (input)="filterActivitiesByTitle(searchTitle.value)">
               </div>
           </div>
+
+          <div class="col-sm-4 col-sm-offset-2 text-center">
+            <div class="input-with-select">
+              <select id="timeTypeSelect" (change)="filterActivitiesByTimeType($event.target.value)">
+                <option value="all" selected>Anytime</option>
+                <option *ngFor="let timeType of ['day', 'night']" [value]="timeType">By {{ timeType }}</option>
+              </select>
+            </div>
+          </div>
+     
+          <div class="col-sm-4 col-sm-offset-2 text-center">
+            <div class="input-with-select">
+              <select id="priceOrderSelect" (change)="orderActivitiesByPrice($event.target.value)">
+                <option value="all" selected>-</option>
+                <option value="asc">Price (ascending)</option>
+                <option value="desc">Price (descending)</option>
+              </select>
+            </div>
+          </div>
       </div>
-    </div>
+  </div>
 </section>
 
 <section class="masonry-contained">
