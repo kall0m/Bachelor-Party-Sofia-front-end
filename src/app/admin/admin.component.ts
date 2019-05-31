@@ -37,7 +37,7 @@ export class AdminComponent implements OnInit {
   }
 
   getQuotationsCount(): void {
-    this.quotationService.getQuotations()
+    this.quotationService.getPendingQuotations()
       .subscribe(quotations => {
         this.quotationsCount = quotations.length;
       });
