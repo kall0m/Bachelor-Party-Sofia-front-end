@@ -1,6 +1,6 @@
 <section class="imageblock" *ngIf="quotation; else loading">
     <div class="imageblock__content col-md-6 col-sm-4 pos-left">
-        <div class="background-image-holder">
+        <div class="background-image-holder" [ngStyle]="{ 'background': 'url(assets/img/hero21.jpg)' }" style="opacity: 1;">
             <img alt="image" src="assets/img/hero21.jpg"/>
         </div>
     </div>
